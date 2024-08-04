@@ -44,6 +44,10 @@
             </select>
         </section>
 
+        <!-- section for display message -->
+        <section id="messageView" class="box">
+				<p id="messageLabel">test</p>
+        </section>
 
         <!-- section for display the photos -->
         <section id="photoView" class="box">
@@ -57,6 +61,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script>
+	    const k_messages = [];
+		k_messages[0] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://mappra.loayza.me/";
+		k_messages[1] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>La clave de la caja es: 2051<br>Ubicacion: https://mapbei.loayza.me/";
+		k_messages[2] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://mapeqn.loayza.me/";
+		k_messages[3] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://mappra.loayza.me/";
+		k_messages[4] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>La clave de la caja es: 2051<br>Ubicacion: https://mapbei.loayza.me/";
+		k_messages[5] = "Somos Renato&Maria de AirBNB y hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento q UD ha tomado.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://mapeqn.loayza.me/";
         //run on document load
         $(document).ready(() => {
             updatePhotos();
@@ -118,6 +129,7 @@
                 photosLoad.appendChild(option);
             }
             updatePhotoView();
+			updateMessage();
         }
 
         // Retrieves an array of images based on the selected language and department.
@@ -147,6 +159,12 @@
             photo.id = "imageDisplayed";
             photo.src = image;
             photoView.appendChild(photo);
+        }
+
+        function updateMessage() {
+            let language = document.getElementById("languageDrop").selectedIndex;
+            let department = document.getElementById("departmentDrop").selectedIndex;
+            document.getElementById("messageLabel").innerHTML = k_messages[department+3*(language-1)+3];
         }
 
         async function copyToClipboard() {
