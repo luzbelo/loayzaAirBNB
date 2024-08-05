@@ -8,14 +8,98 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>AirBNB Manager</title>
+	<!-- extra styling -->
+	<style>
+		div.left {
+			width:60%;
+			float:left;
+		}
+	
+		div.right {
+			width:40%;
+			float:left;
+		}
+	
+		button.main {
+			display: block;
+			width: 100%;
+			border: solid 4px;
+			background-color: #305496;
+			color: white;
+			padding: 14px 28px;
+			font-size: 16px;
+			cursor: pointer;
+			text-align: center;
+		}
+	
+		@media only screen and (max-width: 600px) {
+			body {
+				padding: 2%;
+			}
+	
+			.half-divider {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+	
+			}
+	
+			.box {
+				box-sizing: content-box;
+				width: 95vw;
+				border: solid 2px black;
+				margin: 0.2%;
+				padding: 0.5%;
+			}
+	
+			#photoView {
+				flex: 1 1 110%;
+			}
+	
+			#photoView,
+			img {
+				max-width: 100%;
+			}
+		}
+	
+		@media only screen and (min-width: 600px) {
+			body {
+				padding: 2%;
+			}
+	
+			.half-divider {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				align-items: center;
+			}
+	
+			.box {
+				box-sizing: content-box;
+				width: 95vw;
+				border: solid 2px black;
+				margin: 0.2%;
+				padding: 0.5%;
+			}
+	
+			#photoView {
+				flex: 1 1 110%;
+			}
+	
+			#photoView,
+			img {
+				display: block;
+				margin: auto;
+				max-width: 100%;
+			}
+		}
+	</style>
 </head>
-
-<!-- structure -->
 
 <body>
     <h1>AirBNB Manager</h1>
     <div class="half-divider">
-        <!-- section for managemet of the  options -->
         <section id="options" class="box">
 			<div class="left">
 				<label for="languageDrop">Language:</label>
@@ -32,11 +116,7 @@
 				</select>
 				<br><br>
 				<label for="photoDrop">Photos:</label>
-				<select id="photoDrop" name="photoDrop" onchange="updatePhotoView()">
-					<option value="optionA"></option>
-					<option value="optionB"></option>
-					<option value="optionC"></option>
-				</select>
+				<select id="photoDrop" name="photoDrop" onchange="updatePhotoView()"></select>
 			</div>
 			<div class="right">
 				<button id="copyImage" onclick="imageToClipboard()" class="main">Copy Image</button>
@@ -48,31 +128,23 @@
 			<p id="messageText">test</p>
         </section>
         <!-- section for display the photos -->
-        <section id="photoView" class="box">
-        </section>
+        <section id="photoView" class="box"></section>
     </div>
 
-    <!-- scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous">
-	</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+		//run on document load
+		$(document).ready(() => {updatePhotos();});
+
+		//MSG Spanish Prado, Beijin y Equipenorte  ;  English Prado, Beijin y Equipenorte
 	    const k_messages = [];
-		//MSG Spanish Prado, Beijin y Equipenorte
 		k_messages[0] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://bit.ly/TorreSol";
 		k_messages[1] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>La clave de la caja es: 2051<br>Ubicacion: https://bit.ly/cochabeiging";
 		k_messages[2] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Ubicacion: https://bit.ly/SczEquipeNorte";
-		//MSG English Prado, Beijin y Equipenorte
 		k_messages[3] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Location: https://bit.ly/TorreSol";
 		k_messages[4] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Box key is: 2051<br>Location: https://bit.ly/cochabeiging";
 		k_messages[5] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Location: https://bit.ly/SczEquipeNorte";
         
-		//run on document load
-		$(document).ready(() => {
-            updatePhotos();
-        });
-
         const images = [
             "BE1Reglas.jpg", "BE2ChkIn.jpg", "BE3ChkOut.jpg", "BE4Parqueo.jpg", "BE5Tv.jpg",
             "BS1Reglas.jpg", "BS2ChkIn.jpg", "BS3ChkOut.jpg", "BS4Parqueo.jpg", "BS5Tv.jpg",
@@ -81,6 +153,7 @@
             "PE1Reglas.jpg", "PE2ChkIn.jpg", "PE3ChkOut.jpg", "PE4Parqueo.jpg", "PE5Tv.jpg", "PE6Lavado.jpg", "PE7Calefon.jpg", "PE8Jacuzzi.jpg",
             "PS1Reglas.jpg", "PS2ChkIn.jpg", "PS3ChkOut.jpg", "PS4Parqueo.jpg", "PS5Tv.jpg", "PS6Lavado.jpg", "PS7Calefon.jpg", "PS8Jacizzi.jpg",
         ];
+		
         // A function that updates the photos displayed.
         function updatePhotos() {
             let language = document.getElementById("languageDrop").value;
@@ -166,95 +239,6 @@
 			alert("Text Copied");
 		}
     </script>
-
 </body>
-
-<!-- extra styling -->
-<style>
-	div.left {
-		width:75%;
-		float:left;
-	}
-
-	div.right {
-		width:25%;
-		float:left;
-	}
-
-	button.main {
-		display: block;
-		width: 100%;
-		border: solid 4px;
-		background-color: #305496;
-		color: white;
-		padding: 14px 28px;
-		font-size: 16px;
-		cursor: pointer;
-		text-align: center;
-	}
-
-    @media only screen and (max-width: 600px) {
-        body {
-            padding: 2%;
-        }
-
-        .half-divider {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        .box {
-            box-sizing: content-box;
-            width: 95vw;
-            border: solid 2px black;
-            margin: 0.2%;
-            padding: 0.5%;
-        }
-
-        #photoView {
-            flex: 1 1 110%;
-        }
-
-        #photoView,
-        img {
-            max-width: 100%;
-        }
-    }
-
-    @media only screen and (min-width: 600px) {
-        body {
-            padding: 2%;
-        }
-
-        .half-divider {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .box {
-            box-sizing: content-box;
-            width: 95vw;
-            border: solid 2px black;
-            margin: 0.2%;
-            padding: 0.5%;
-        }
-
-        #photoView {
-            flex: 1 1 110%;
-        }
-
-        #photoView,
-        img {
-            display: block;
-            margin: auto;
-            max-width: 100%;
-        }
-    }
-</style>
 
 </html>
