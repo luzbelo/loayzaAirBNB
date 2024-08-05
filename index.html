@@ -5,62 +5,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <title>Air Manager</title>
+    <title>AirBNB Manager</title>
 </head>
 
 <!-- structure -->
 
 <body>
-    <h1>Air Manager</h1>
-
+    <h1>AirBNB Manager</h1>
     <div class="half-divider">
         <!-- section for managemet of the  options -->
         <section id="options" class="box">
-            <label for="languageDrop">Language:</label>
-            <select id="languageDrop" name="languageDrop" onchange="updatePhotos()">
-                <option value="SP">Spanish</option>
-                <option value="EN">English</option>
-            </select>
-
-            <br>
-
-            <label for="departmentDrop">Department:</label>
-            <select id="departmentDrop" name="departmentDrop" onchange="updatePhotos()">
-                <option value="Prado">Prado</option>
-                <option value="Beijin">Beijin</option>
-                <option value="Equipetrol">Equipetrol</option>
-            </select>
-
-            <br>
-
-            <label for="photoDrop">Photos:</label>
-            <select id="photoDrop" name="photoDrop" onchange="updatePhotoView()">
-                <option value="optionA"></option>
-                <option value="optionB"></option>
-                <option value="optionC"></option>
-            </select>
-        </section>
-
+			<div class="left">
+				<label for="languageDrop">Language:</label>
+				<select id="languageDrop" name="languageDrop" onchange="updatePhotos()">
+					<option value="SP">Spanish</option>
+					<option value="EN">English</option>
+				</select>
+				<br><br>
+				<label for="departmentDrop">Department:</label>
+				<select id="departmentDrop" name="departmentDrop" onchange="updatePhotos()">
+					<option value="Prado">Prado</option>
+					<option value="Beijin">Beijin</option>
+					<option value="Equipetrol">Equipetrol</option>
+				</select>
+				<br><br>
+				<label for="photoDrop">Photos:</label>
+				<select id="photoDrop" name="photoDrop" onchange="updatePhotoView()">
+					<option value="optionA"></option>
+					<option value="optionB"></option>
+					<option value="optionC"></option>
+				</select>
+			</div>
+			<div class="right">
+				<button id="copyImage" onclick="imageToClipboard()" class="main">Copy Image</button>
+				<button id="copyText" onclick="textToClipboard()" class="main">Copy Text</button>
+			</div>			
+		</section>
         <!-- section for display message -->
         <section id="messageView" class="box">
-				<p id="messageText">test</p>
+			<p id="messageText">test</p>
         </section>
-
         <!-- section for display the photos -->
         <section id="photoView" class="box">
-
         </section>
-        <button id="copyImage" onclick="imageToClipboard()">Copy Image</button>
-        <button id="copyText" onclick="textToClipboard()">Copy Text</button>
     </div>
 
     <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+	</script>
     <script>
 	    const k_messages = [];
 		//MSG Spanish Prado, Beijin y Equipenorte
@@ -71,49 +67,19 @@
 		k_messages[3] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Location: https://bit.ly/TorreSol";
 		k_messages[4] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Box key is: 2051<br>Location: https://bit.ly/cochabeiging";
 		k_messages[5] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>WIFI: Blanco<br>PASSWORD: Huesped123$<br>Location: https://bit.ly/SczEquipeNorte";
-        //run on document load
-        $(document).ready(() => {
+        
+		//run on document load
+		$(document).ready(() => {
             updatePhotos();
         });
 
         const images = [
-            "BE1Reglas.jpg",
-            "BE2ChkIn.jpg",
-            "BE3ChkOut.jpg",
-            "BE4Parqueo.jpg",
-            "BE5Tv.jpg",
-            "BS1Reglas.jpg",
-            "BS2ChkIn.jpg",
-            "BS3ChkOut.jpg",
-            "BS4Parqueo.jpg",
-            "BS5Tv.jpg",
-            "EE1Reglas.jpg",
-            "EE2ChkIn.jpg",
-            "EE3ChkOut.jpg",
-            "EE4Tv.jpg",
-            "EE5Lavado.jpg",
-            "ES1Reglas.jpg",
-            "ES2ChkIn.jpg",
-            "ES3ChkOut.jpg",
-            "ES4Tv.jpg",
-            "ES5Lavado.jpg",
-            "MSGs.txt",
-            "PE1Reglas.jpg",
-            "PE2ChkIn.jpg",
-            "PE3ChkOut.jpg",
-            "PE4Parqueo.jpg",
-            "PE5Tv.jpg",
-            "PE6Lavado.jpg",
-            "PE7Calefon.jpg",
-            "PE8Jacuzzi.jpg",
-            "PS1Reglas.jpg",
-            "PS2ChkIn.jpg",
-            "PS3ChkOut.jpg",
-            "PS4Parqueo.jpg",
-            "PS5Tv.jpg",
-            "PS6Lavado.jpg",
-            "PS7Calefon.jpg",
-            "PS8Jacizzi.jpg",
+            "BE1Reglas.jpg", "BE2ChkIn.jpg", "BE3ChkOut.jpg", "BE4Parqueo.jpg", "BE5Tv.jpg",
+            "BS1Reglas.jpg", "BS2ChkIn.jpg", "BS3ChkOut.jpg", "BS4Parqueo.jpg", "BS5Tv.jpg",
+            "EE1Reglas.jpg", "EE2ChkIn.jpg", "EE3ChkOut.jpg", "EE4Tv.jpg", "EE5Lavado.jpg",
+            "ES1Reglas.jpg", "ES2ChkIn.jpg", "ES3ChkOut.jpg", "ES4Tv.jpg", "ES5Lavado.jpg",
+            "PE1Reglas.jpg", "PE2ChkIn.jpg", "PE3ChkOut.jpg", "PE4Parqueo.jpg", "PE5Tv.jpg", "PE6Lavado.jpg", "PE7Calefon.jpg", "PE8Jacuzzi.jpg",
+            "PS1Reglas.jpg", "PS2ChkIn.jpg", "PS3ChkOut.jpg", "PS4Parqueo.jpg", "PS5Tv.jpg", "PS6Lavado.jpg", "PS7Calefon.jpg", "PS8Jacizzi.jpg",
         ];
         // A function that updates the photos displayed.
         function updatePhotos() {
@@ -197,6 +163,7 @@
         function textToClipboard() {
 			let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
 			navigator.clipboard.writeText(text);
+			alert("Text Copied");
 		}
     </script>
 
@@ -204,6 +171,28 @@
 
 <!-- extra styling -->
 <style>
+	div.left {
+		width:75%;
+		float:left;
+	}
+
+	div.right {
+		width:25%;
+		float:left;
+	}
+
+	button.main {
+		display: block;
+		width: 100%;
+		border: solid 4px;
+		background-color: #305496;
+		color: white;
+		padding: 14px 28px;
+		font-size: 16px;
+		cursor: pointer;
+		text-align: center;
+	}
+
     @media only screen and (max-width: 600px) {
         body {
             padding: 2%;
@@ -242,7 +231,7 @@
 
         .half-divider {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: space-between;
             align-items: center;
         }
