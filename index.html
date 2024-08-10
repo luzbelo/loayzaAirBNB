@@ -237,7 +237,7 @@
 			let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
 			text = text.replaceAll("&nbsp;", " ");
 			text = text.replaceAll("&amp;", "&");
-			text = text.replaceAll("&quot;", "\");
+			//text = text.replaceAll("&quot;", "\");
 			text = text.replaceAll("&lt;", "<");
 			text = text.replaceAll("&gt;", ">");
 			navigator.clipboard.writeText(text);
