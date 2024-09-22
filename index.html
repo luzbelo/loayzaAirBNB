@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,95 +7,28 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>AirBNB Manager</title>
-	<!-- extra styling -->
 	<style>
-		div.left {
-			width:60%;
-			float:left;
-		}
-	
-		div.right {
-			width:40%;
-			float:left;
-		}
-	
-		button.main {
-			display: block;
-			width: 100%;
-			border: solid 4px;
-			background-color: #305496;
-			color: white;
-			padding: 14px 28px;
-			font-size: 16px;
-			cursor: pointer;
-			text-align: center;
-		}
-	
+		div.left { width:60%; float:left; }
+		div.right { width:40%; float:left; }
+		button.main { display: block; width: 100%; border: solid 4px; background-color: #305496; color: white; padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center; }
 		@media only screen and (max-width: 600px) {
-			body {
-				padding: 2%;
-			}
-	
-			.half-divider {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-	
-			}
-	
-			.box {
-				box-sizing: content-box;
-				width: 95vw;
-				border: solid 2px black;
-				margin: 0.2%;
-				padding: 0.5%;
-			}
-	
-			#photoView {
-				flex: 1 1 110%;
-			}
-	
+			body { padding: 2%; }
+			.half-divider { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+			.box { box-sizing: content-box; width: 95vw; border: solid 2px black; margin: 0.2%; padding: 0.5%; }
+			#photoView { flex: 1 1 110%; }
 			#photoView,
-			img {
-				max-width: 100%;
-			}
+			img { max-width: 100%; }
 		}
-	
 		@media only screen and (min-width: 600px) {
-			body {
-				padding: 2%;
-			}
-	
-			.half-divider {
-				display: flex;
-				flex-direction: column;
-				justify-content: space-between;
-				align-items: center;
-			}
-	
-			.box {
-				box-sizing: content-box;
-				width: 95vw;
-				border: solid 2px black;
-				margin: 0.2%;
-				padding: 0.5%;
-			}
-	
-			#photoView {
-				flex: 1 1 110%;
-			}
-	
+			body { padding: 2%; }
+			.half-divider { display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
+			.box { box-sizing: content-box; width: 95vw; border: solid 2px black; margin: 0.2%; padding: 0.5%; }
+			#photoView { flex: 1 1 110%; }
 			#photoView,
-			img {
-				display: block;
-				margin: auto;
-				max-width: 100%;
-			}
+			img { display: block; margin: auto; max-width: 100%; }
 		}
 	</style>
 </head>
-
 <body>
     <h1>AirBNB Manager</h1>
     <div class="half-divider">
@@ -123,43 +55,34 @@
 				<button id="copyText" onclick="textToClipboard()" class="main">Copy Text</button>
 			</div>			
 		</section>
-        <!-- section for display message -->
-        <section id="messageText" class="box">
-        </section>
-        <!-- section for display the photos -->
+        <section id="messageText" class="box"></section>
         <section id="photoView" class="box"></section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-		//run on document load
-		$(document).ready(() => {updatePhotos();});
-
-		//MSG Spanish Prado, Beijin y Equipenorte  ;  English Prado, Beijin y Equipenorte
-	    const k_messages = [];
+	$(document).ready(() => {updatePhotos();}); //run on document load
+	//MSG Spanish Prado, Beijin y Equipenorte  ;  English Prado, Beijin y Equipenorte
+	const k_messages = [];
 		k_messages[0] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Ubicacion*: https://bit.ly/TorreSol";
 		k_messages[1] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Clave de la caja*: 2051<br>*Ubicacion*: https://bit.ly/cochabeiging";
 		k_messages[2] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Ubicacion*: https://bit.ly/SczEquipeNorte";
 		k_messages[3] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Location*: https://bit.ly/TorreSol";
 		k_messages[4] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Box key is*: 2051<br>*Location*: https://bit.ly/cochabeiging";
 		k_messages[5] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Location*: https://bit.ly/SczEquipeNorte";
-        
         const images = [
             "BE1Reglas.jpg", "BE2ChkIn.jpg", "BE3ChkOut.jpg", "BE4Parqueo.jpg", "BE5Tv.jpg",
             "BS1Reglas.jpg", "BS2ChkIn.jpg", "BS3ChkOut.jpg", "BS4Parqueo.jpg", "BS5Tv.jpg",
             "EE1Reglas.jpg", "EE2ChkIn.jpg", "EE3ChkOut.jpg", "EE4Tv.jpg", "EE5Lavado.jpg",
             "ES1Reglas.jpg", "ES2ChkIn.jpg", "ES3ChkOut.jpg", "ES4Tv.jpg", "ES5Lavado.jpg",
             "PE1Reglas.jpg", "PE2ChkIn.jpg", "PE3ChkOut.jpg", "PE4Parqueo.jpg", "PE5Tv.jpg", "PE6Lavado.jpg", "PE7Calefon.jpg", "PE8Jacuzzi.jpg",
-            "PS1Reglas.jpg", "PS2ChkIn.jpg", "PS3ChkOut.jpg", "PS4Parqueo.jpg", "PS5Tv.jpg", "PS6Lavado.jpg", "PS7Calefon.jpg", "PS8Jacizzi.jpg",
-        ];
-		
+            "PS1Reglas.jpg", "PS2ChkIn.jpg", "PS3ChkOut.jpg", "PS4Parqueo.jpg", "PS5Tv.jpg", "PS6Lavado.jpg", "PS7Calefon.jpg", "PS8Jacizzi.jpg" ];
         // A function that updates the photos displayed.
         function updatePhotos() {
             let language = document.getElementById("languageDrop").value;
             let department = document.getElementById("departmentDrop").value;
             let viewedImages = [];
             viewedImages = imagesGet(language, department);
-
             // load viewedImages into photosLoad as options
             let photosLoad = document.getElementById("photoDrop");
             photosLoad.innerHTML = "";
@@ -172,15 +95,11 @@
             updatePhotoView();
 			updateMessage();
         }
-
         // Retrieves an array of images based on the selected language and department.
-        // 
         // Parameters:
         // - language: The selected language as a string.
         // - department: The selected department as a string.
-        // 
-        // Returns:
-        // An array of images that match the selected language and department.
+        // Returns: An array of images that match the selected language and department.
         function imagesGet(language, department) {
             let result = [];
             images.forEach((image) => {
@@ -190,7 +109,6 @@
             })
             return result;
         }
-
         // A function that updates the photos displayed.
         function updatePhotoView() {
             let image = document.getElementById("photoDrop").value;
@@ -201,26 +119,21 @@
             photo.src = image;
             photoView.appendChild(photo);
         }
-
         function updateMessage() {
             let language = document.getElementById("languageDrop").selectedIndex;
             let department = document.getElementById("departmentDrop").selectedIndex;
             document.getElementById("messageText").innerHTML = k_messages[department+3*(language-1)+3];
         }
-
         async function imageToClipboard() {
             try {
                 const imageElement = document.getElementById('imageDisplayed');
                 const canvas = document.createElement('canvas');
                 const context = canvas.getContext('2d');
-
                 // Set canvas dimensions to match the image
                 canvas.width = imageElement.naturalWidth;
                 canvas.height = imageElement.naturalHeight;
-
                 // Draw the image onto the canvas
                 context.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
-
                 // Convert the canvas content to a blob
                 canvas.toBlob(async (blob) => {
                     const clipboardItemInput = new ClipboardItem({ 'image/png': blob });
@@ -233,16 +146,15 @@
             }
         }
         function textToClipboard() {
-			let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
-			text = text.replaceAll("&nbsp;", " ");
-			text = text.replaceAll("&amp;", "&");
-			//text = text.replaceAll("&quot;", "\");
-			text = text.replaceAll("&lt;", "<");
-			text = text.replaceAll("&gt;", ">");
-			navigator.clipboard.writeText(text);
-			alert("Text Copied");
-		}
+		let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
+		text = text.replaceAll("&nbsp;", " ");
+		text = text.replaceAll("&amp;", "&");
+		//text = text.replaceAll("&quot;", "\");
+		text = text.replaceAll("&lt;", "<");
+		text = text.replaceAll("&gt;", ">");
+		navigator.clipboard.writeText(text);
+		alert("Text Copied");
+	}
     </script>
 </body>
-
 </html>
