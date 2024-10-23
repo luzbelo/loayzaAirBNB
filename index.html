@@ -10,7 +10,7 @@
 	<style>
 		div.left { width:60%; float:left; }
 		div.right { width:40%; float:left; }
-		button.main { display: block; width: 100%; border: solid 4px; background-color: #305496; color: white; padding: 14px 28px; font-size: 16px; cursor: pointer; text-align: center; }
+		button.main { display: block; width: 100%; border: solid 4px; background-color: #305496; color: white; padding: 5px 28px; font-size: 15px; cursor: pointer; text-align: center; }
 		@media only screen and (max-width: 600px) {
 			body { padding: 2%; }
 			.half-divider { display: flex; flex-direction: column; justify-content: center; align-items: center; }
@@ -51,6 +51,7 @@
 				<select id="photoDrop" name="photoDrop" onchange="updatePhotoView()"></select>
 			</div>
 			<div class="right">
+				<button id="copyAirBNB" onclick="airBNBToClipboard()" class="main">Copy AirBNB</button>
 				<button id="copyImage" onclick="imageToClipboard()" class="main">Copy Image</button>
 				<button id="copyText" onclick="textToClipboard()" class="main">Copy Text</button>
 			</div>			
@@ -61,15 +62,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
-	$(document).ready(() => {updatePhotos();}); //run on document load
-	//MSG Spanish Prado, Beijin y Equipenorte  ;  English Prado, Beijin y Equipenorte
-	const k_messages = [];
+		$(document).ready(() => {updatePhotos();}); //run on document load
+		//MSG Spanish Prado, Beijin y Equipenorte  ;  English Prado, Beijin y Equipenorte
+		const k_messages = [];
 		k_messages[0] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Ubicacion*: https://bit.ly/TorreSol";
 		k_messages[1] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Clave de la caja*: 2051<br>*Ubicacion*: https://bit.ly/cochabeiging";
 		k_messages[2] = "Somos Renato y Maria de AirBNB, hemos creado este grupo para mantener una comunicación más fluida para cualquier tema concerniente al departamento que UD tomó.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Ubicacion*: https://bit.ly/SczEquipeNorte";
 		k_messages[3] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Location*: https://bit.ly/TorreSol";
 		k_messages[4] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Box key is*: 2051<br>*Location*: https://bit.ly/cochabeiging";
 		k_messages[5] = "This is Renato y Maria from AirBNB, we have created the group in order to keep a fluent communication in case any cocern during your stay in out apartment.<br>*WIFI*: Blanco<br>*PASSWORD*: Huesped123$<br>*Location*: https://bit.ly/SczEquipeNorte";
+		const k_airBNB = [];
+		k_airBNB[0] = "https://www.airbnb.com/h/blancoprado";
+		k_airBNB[1] = "https://www.airbnb.com/h/blancobeiging";
+		k_airBNB[2] = "https://www.airbnb.com/h/santaequinorte";
         const images = [
             "BE1Reglas.jpg", "BE2ChkIn.jpg", "BE3ChkOut.jpg", "BE4Parqueo.jpg", "BE5Tv.jpg",
             "BS1Reglas.jpg", "BS2ChkIn.jpg", "BS3ChkOut.jpg", "BS4Parqueo.jpg", "BS5Tv.jpg",
@@ -146,15 +151,21 @@
             }
         }
         function textToClipboard() {
-		let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
-		text = text.replaceAll("&nbsp;", " ");
-		text = text.replaceAll("&amp;", "&");
-		//text = text.replaceAll("&quot;", "\");
-		text = text.replaceAll("&lt;", "<");
-		text = text.replaceAll("&gt;", ">");
-		navigator.clipboard.writeText(text);
-		alert("Text Copied");
-	}
+			let text = document.getElementById('messageText').innerHTML.replaceAll("<br>", "\r\n");
+			text = text.replaceAll("&nbsp;", " ");
+			text = text.replaceAll("&amp;", "&");
+			//text = text.replaceAll("&quot;", "\");
+			text = text.replaceAll("&lt;", "<");
+			text = text.replaceAll("&gt;", ">");
+			navigator.clipboard.writeText(text);
+			alert("Text Copied");
+		}
+        function airBNBToClipboard() {
+            let department = document.getElementById("departmentDrop").selectedIndex;
+            let text = k_airBNB[department];
+			navigator.clipboard.writeText(text);
+			alert("AirBNB URL Copied");
+		}
     </script>
 </body>
 </html>
