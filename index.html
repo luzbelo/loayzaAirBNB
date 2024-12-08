@@ -11,18 +11,17 @@
 		div.left { width:60%; float:left; }
 		div.right { width:40%; float:left; }
 		button.main { display: block; width: 100%; border: solid 4px; background-color: #305496; color: white; padding: 5px 28px; font-size: 15px; cursor: pointer; text-align: center; }
+		#imageDisplayed {margin: auto; }
+	        body { padding: 2%; }
+		.box { box-sizing: content-box; width: 95vw; border: solid 2px black; margin: 0.2%; padding: 0.5%; }
 		@media only screen and (max-width: 600px) {
-			body { padding: 2%; }
 			.half-divider { display: flex; flex-direction: column; justify-content: center; align-items: center; }
-			.box { box-sizing: content-box; width: 95vw; border: solid 2px black; margin: 0.2%; padding: 0.5%; }
 			#photoView { flex: 1 1 110%; }
 			#photoView,
 			img { max-width: 100%; }
 		}
 		@media only screen and (min-width: 600px) {
-			body { padding: 2%; }
 			.half-divider { display: flex; flex-direction: column; justify-content: space-between; align-items: center; }
-			.box { box-sizing: content-box; width: 95vw; border: solid 2px black; margin: 0.2%; padding: 0.5%; }
 			#photoView { flex: 1 1 110%; align-items: center; }
 			#photoView,
 			img { display: block; max-width: 100%; }
