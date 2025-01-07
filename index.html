@@ -142,7 +142,7 @@
                 canvas.toBlob(async (blob) => {
                     const clipboardItemInput = new ClipboardItem({ 'image/png': blob });
                     await navigator.clipboard.write([clipboardItemInput]);
-                    alert('Image copied to clipboard!');
+                    //alert('Image copied to clipboard!');
                 }, 'image/png');
             } catch (err) {
                 console.error('Failed to copy image: ', err);
@@ -157,13 +157,13 @@
 			text = text.replaceAll("&lt;", "<");
 			text = text.replaceAll("&gt;", ">");
 			navigator.clipboard.writeText(text);
-			alert("Text Copied");
+			//alert("Text Copied");
 		}
         function airBNBToClipboard() {
             let department = document.getElementById("departmentDrop").selectedIndex;
             let text = k_airBNB[department];
 			navigator.clipboard.writeText(text);
-			alert("AirBNB URL Copied");
+			//alert("AirBNB URL Copied");
 		}
     </script>
 </body>
